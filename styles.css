@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+/* Import Roboto font or another similar font if needed */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+.vfrc-message {
+    font-family: 'Montserrat', sans-serif !important; /* Changed to Montserrat, similar to Google Sans */
+    font-size: 16px; /* Change to your desired font size */
+    border-radius: 10px !important;
+}
+
+
 .vfrc-chat--session-time,
 .vfrc-chat--status {
   display: none;
@@ -48,18 +60,165 @@ footer button.vfrc-button--primary[label=Cancel]::after {
 
 .vfrc-prompt button.vfrc-button--primary::after,
 footer button.vfrc-button--primary::after {
-  content: "Start New Chat";
+  content: "Start Chat";
+  background: radial-gradient(circle, #FFD67A, #000000); /* Circular Gradient */
+  border-radius: 12px !important;
+  font-family: 'Montserrat', sans-serif !important; /* Changed to Montserrat, similar to Google Sans */
+  font-size: 16px; /* Change to your desired font size */
+  color: #000000 !important; /* Set font color to black */
+  font-weight: 700 !important; /* Set font weight to bold */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important; /* Reapply shadow */
 }
 .vfrc-prompt button.vfrc-button--primary[label="End Chat"]::after,
 footer button.vfrc-button--primary[label="End Chat"]::after {
   content: "End Chat";
+  background: radial-gradient(circle,#FF8E8E,#FE4444,#FF0000, #000000); /* Three-color circular gradient */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important; /* Reapply shadow */
+  font-family: 'Montserrat', sans-serif !important; /* Changed to Montserrat, similar to Google Sans */
+  font-size: 16px; /* Change to your desired font size */
+  color: #000000 !important; /* Set font color to black */
+  font-weight: 700 !important; /* Set font weight to bold */
 }
 .vfrc-prompt button.vfrc-button--primary[label=Cancel]::after,
 footer button.vfrc-button--primary[label=Cancel]::after {
   content: "Cancel";
   color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5) !important; /* Reapply shadow */
+  font-family: 'Montserrat', sans-serif !important; /* Changed to Montserrat, similar to Google Sans */
+  font-size: 16px; /* Change to your desired font size */
+  color: #000000 !important; /* Set font color to black */
+  font-weight: 700 !important; /* Set font weight to bold */
 }
 
 .vfrc-widget--chat {
-  height: 60%; /* Set the height to 60% of the original size */
+  height: 65%; /* Set the height to 60% of the original size */
+  width: 27%; /* Set the width to 60% of the original size */
+  animation: fadeInChat 1s ease-out;
+}
+
+.c-kIbiaN-iiTsXc-size-small.c-kIbiaN-icyFRzP-css {
+    display: none;
+  }
+  
+  .c-kIbiaN-eyfkxi-size-large {
+    background-image: url("https://storage.googleapis.com/msgsndr/bFvL1gvuf7WH6d7nYEsU/media/66d6e2a4ab806e8f3b2f9b5b.gif");
+  }
+
+
+/* Target the button with the class .vfrc-launcher-cBqszf */
+.vfrc-launcher {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    background-image: url("https://storage.googleapis.com/msgsndr/bFvL1gvuf7WH6d7nYEsU/media/66d6e2a4ab806e8f3b2f9b5b.gif") !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 50% !important; /* Keeps the button circular */
+    width: 80px !important; /* Adjust to the size of the GIF */
+    height: 80px !important; /* Adjust to the size of the GIF */
+    border: none !important; /* Remove border */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important; /* Reapply shadow */
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Hide any img elements inside the button if there are any */
+.vfrc-launcher img {
+    display: none !important; 
+}
+
+
+/* Start of testing*/
+.vfrc-proactive-message {
+    backdrop-filter: blur(38px) saturate(179%) !important;
+    background: radial-gradient(circle,#000000,#000000,#000000,#000000,#FFD67A); /* Circular Gradient */
+    border-radius: 50px !important;
+    border: 1px solid #D4AF37 !important;
+    font-family: 'Montserrat', sans-serif !important;/*Change to your desired font */
+    font-size: 15px; /* Change to your desired font size */
+    color: #FFD700 !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5) !important; /* Reapply shadow */
+    font-weight: 300 !important; /* Set font weight to bold */
+  }
+  
+  .vfrc-button--secondary {
+    display: inline-block;
+    border: 1px solid rgb(35, 144, 233);
+    font-size: 16px;
+    /* changed */
+    font-weight: 400;
+    border-radius: 8px;
+    /* changed */
+    padding:20px 20px;
+    margin: 0px;
+    box-sizing: border-box;
+    background-color: rgba(212, 237, 255, 0.5);
+     /* changed */
+    cursor: pointer;
+    transition: background-color 50ms ease-in-out 0s,
+      border-color 100ms ease-in-out 0s;
+    white-space: normal;
+    text-align: left;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif !important; /* Changed to Montserrat, similar to Google Sans */
+  }
+  
+  .vfrc-button--secondary:hover {
+    background-color: rgba(212, 237, 255, 1);
+    border: 1px solid rgb(35, 144, 233);
+  }
+  
+
+  
+  @media screen and (min-width: 768px) {
+    .vfrc-widget--chat {
+      border-radius: 20px;
+    }
+  }
+
+  .voiceflow-chat {
+    box-shadow: #8a2c2c;
+  }
+
+
+
+/* Chat header styling with gradient */
+.vfrc-header {
+    background: radial-gradient(circle, #FFD67A, #000000); /* Gradient from dark blue to light blue */
+    color: #ffffff; /* White text color */
+    height: 30px;
+    font-family: 'Roboto', sans-serif; /* Roboto font */
+    font-weight: 700; /* Bold font weight */
+    font-size: 18px; /* Font size for the title */
+    padding: 4px 4px; /* Padding around the text */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Vertically center the content */
+    justify-content: space-between; /* Space between the elements */
+    border-radius: 10px 10px 0 0; /* Rounded corners at the top */
+}
+
+.vfrc-header--button {
+    background-color: transparent; /* Match background color */
+    border: 1px solid #ffffff73; /* Add a white border to make it more visible */
+    border-radius: 20%; /* Round buttons */
+    width: 20px; /* Button size */
+    height: 20px; /* Button size */
+    display: flex;
+    align-items: right;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px; /* Increase the size of the icons inside */
+    margin-left: 20px; /* Space between buttons */
+    margin-right: 20px; /* Space between buttons */
+    padding: 10px 15px; /* Adds padding for larger button area */
+}
+
+/* Remove the image */
+.vfrc-header img {
+    display: none; /* Hide any image in the header */
+}
+
+/* Remove the text content */
+.vfrc-header--title, .vfrc-header--subtitle {
+    display: none; /* Hide any text in the header */
 }
