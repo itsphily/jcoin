@@ -131,7 +131,7 @@ footer button.vfrc-button--primary[label=Cancel]::after {
 /* Start of testing*/
 .vfrc-proactive-message {
     backdrop-filter: blur(38px) saturate(179%) !important;
-    background: radial-gradient(circle,#000000,#000000,#000000,#000000,#FFD67A); /* Circular Gradient */
+    background: radial-gradient(circle,#000000,#000000,#000000,#000000,#b3810e); /* Circular Gradient */
     border-radius: 50px !important;
     border: 1px solid #D4AF37 !important;
     font-family: 'Montserrat', sans-serif !important;/*Change to your desired font */
