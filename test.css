@@ -92,8 +92,17 @@ footer button.vfrc-button--primary[label=Cancel]::after {
 
 .vfrc-widget--chat {
     height: 600px; /* Set the height to 65% of the original size */
-    width: 400px; /* Set the width to 27% of the original size */
+    width: 500px; /* Set the width to 27% of the original size */
     animation: fadeInChat 1s ease-out;
+  }
+  
+  @media screen and (max-width: 768px) {
+    /* For screens smaller than 768px (mobile devices) */
+    .vfrc-widget--chat {
+        width: 100%; /* Use 90% of the screen width */
+        height: 100%; /* Use 80% of the screen height */
+        border-radius: 15px; /* Keep some rounded corners */
+    }
   }
 
 .c-kIbiaN-iiTsXc-size-small.c-kIbiaN-icyFRzP-css {
