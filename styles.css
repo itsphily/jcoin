@@ -99,11 +99,8 @@ footer button.vfrc-button--primary[label=Cancel]::after {
 @media screen and (max-width: 768px) {
   /* For screens smaller than 768px (mobile devices) */
   .vfrc-widget--chat {
-      width: 90%; /* Use 90% of the screen width */
-      height: 80%; /* Use 80% of the screen height */
-      bottom: 0;
-      right: 5%; /* Centered horizontally with some space on the sides */
-      left: 5%;
+      width: 100%; /* Use 90% of the screen width */
+      height: 100%; /* Use 80% of the screen height */
       border-radius: 15px; /* Keep some rounded corners */
   }
 }
