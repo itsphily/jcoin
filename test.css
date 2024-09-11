@@ -91,8 +91,8 @@ footer button.vfrc-button--primary[label=Cancel]::after {
 }
 
 .vfrc-widget--chat {
-    height: 600px; /* Set the height to 65% of the original size */
-    width: 500px; /* Set the width to 27% of the original size */
+    height: 65%; /* Set the height to 65% of the original size */
+    width: 27%; /* Set the width to 27% of the original size */
     animation: fadeInChat 1s ease-out;
   }
   

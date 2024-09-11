@@ -1,0 +1,107 @@
+You are an expert at creating structured API call and JSON files.
+Your task is to output a JSON file with the following format: 
+{
+    "data": {
+    "name": "JCOIN courses, lessons, webinars",
+    "schema": {
+        "searchableFields": [
+            "Title",
+            "Permalink",
+            "Tags String",
+            "Course Tags String",
+            "Content Type String",
+            "Subject String",
+            "Audience String"
+        ],
+        "metadataFields": [
+            "Title",
+            "Permalink",
+            "Image Featured",
+            "Tags",
+            "Course Tags",
+            "Content Type",
+            "Subject",
+            "Audience",
+            "Partners",
+            "Completion Certificate"
+        ]
+    },
+        "items": []
+
+# TASK         
+Fill the items array with the fields from the excel sheet that was provided. An example of an item has been provided below The different categories should be: Title, Permalink, Image Featured, Tags, Tags String, Course Tags, Course Tags String, Course Categories, Content Type, Content Type String, Subject, Subject String, Audience, Audience String, Completition Certificate. 
+
+# Instructions
+Step 1: In the CSV file some of these categories have elements that are separated by "|", ",", or other characters. Be careful sometimes the elements are not properly separated by spaces, for example "a|b" should still be turned into "a", "b". For these categories create an array of elements. For example if the excel sheet has "a"|"b", you should translate this to ["a", "b"].
+Step 2: Replace all the abbreviations and remove duplicates. For example: Opioid Use Disorder (OUD), you would first replace OUD by Opioid Use Disorder, since it is a duplication you would remove one of them (including the extra parenthesis)
+Here is a list of replacements, do not replace any other abbreviations: "OUD": "Opioid Use Disorder", "MOUD": "Medication Opioid Use Disorder", "SUD": "Substance Use Disorder", "MAT": "Medication for addiction treatment", "MAR": "missing at random", "MCAR": "missing completely at random", "MNAR": "missing not at random", "ASAM": "American Society of Addiction Medicine", "CFR": "Code of Federal Regulations", "ACE": "Adverse Childhood Experiences", "HIPAA": "Health Insurance Portability and Accountability Act", "RNR": "Risk-Need-Responsivity", "LEAP": "learning experiences to advance practice", "APF": "Addiction Policy Forum", "CBT": "Cognitive Behavioral Therapy", "NIH": "National Institutes of Health", "UMASS": "University of Massachusetts", "TASC": "Treatment Alternatives for Safer Communities"
+Step 3: The following categories should be arrays: Tags, Course Tags, Content Type, Subject, Audience. You should create additional categories which will be included in the item. The additional categories will be a single string that will include all the elements from each the arrays.
+Step 4: Make sure you did everything right, and check for mistakes. 
+Step 5: if any values are missing use null. YOU must not use NaN or any other values that wouldn't be allowed in an API call. If there values missing just use null.
+Step 6: highlight anything you think wasn't done clearly
+Step 7: Take a deep breath and review the solution
+Step 8: Make any corrections necessary without deviating from the instructions
+Step 9: Ensure that all NaN or missing values are replaced with null in the output JSON. Do not use any other placeholder such as NaN, undefined, or empty strings.
+Step 9: Output the CSV file with the items filled.
+
+# Item example
+This item doesn't contain the Tags String, Course Tags String, Content Type String, Subject String, Audience String that you should add.
+ "Title": "Implementing the NIATx Model of Process Improvement",
+                "Permalink": "https://www.jcoinctc.org/courses/implementing-niatx/",
+                "Image Featured": "https://www.jcoinctc.org/wp-content/uploads/NIATx-Thumbnail-2.jpg",
+                "Tags": [
+                    "Criminal legal system practitioners",
+                    "OUD",
+                    "Recovery",
+                    "Research",
+                    "Researchers",
+                    "Students/Educators",
+                    "SUD",
+                    "Treatment providers"
+                ],
+                "Course Tags": [
+                    "Change Project",
+                    "Change Team",
+                    "Coach",
+                    "Coaching",
+                    "Flowcharting",
+                    "Implementation Core",
+                    "Increase Admissions",
+                    "Increase Continuation",
+                    "Measuring Change",
+                    "NGT",
+                    "NIATx",
+                    "Nominal Group Technique",
+                    "PDSA",
+                    "Plan-Do-Study-Act",
+                    "Planning Change",
+                    "Process Improvement",
+                    "Processes",
+                    "Rapid Cycle Testing",
+                    "Reduce No-Shows",
+                    "Reduce Wait Times",
+                    "Sustainability Plan",
+                    "Systems Change",
+                    "Walk-Through"
+                ],
+                "Course Categories": "Courses>General,Home",
+                "Content Type": "Courses",
+                "Subject": [
+                    "Opioid Use Disorder (OUD)",
+                    "Recovery",
+                    "Research",
+                    "Substance Use Disorder (SUD)"
+                ],
+                "Audience": [
+                    "Criminal Legal System Practitioners",
+                    "Researchers",
+                    "Students & Educators",
+                    "Treatment Providers"
+                ],
+                "Partners": [
+                    "JCOIN CTC",
+                    "University of Wisconsin-Madison"
+                ],
+                "Completion Certificate": true, 
+            },
+
