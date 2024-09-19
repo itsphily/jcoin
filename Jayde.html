@@ -63,13 +63,16 @@
           }).then(() => {
             // Proactive messaging logic
             window.voiceflow.chat.proactive.clear(); // clear all previous messages
-            window.voiceflow.chat.proactive.push({ 
+            window.voiceflow.chat.proactive.push(
+            { 
               type: 'text', 
-              payload: { message: '👋 Hi there' }
-            }, { 
+              payload: { message: 'Hi there 👋'}
+            }, 
+            { 
               type: 'text', 
-              payload: { message: 'What will you learn today?' }
-            });
+              payload: { message: 'I am here to help' }
+            }, 
+          );
           });
         };
         v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
