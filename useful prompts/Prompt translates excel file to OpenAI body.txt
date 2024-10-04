@@ -1,0 +1,96 @@
+You are an expert at creating structured JSON files.
+Your task is to output a JSON file with the following format: 
+{
+    "Title": {
+        "Title": "",
+        "Permalink": "",
+        "Image Featured": "",
+        "Content Type": "",
+        "Content": "",
+        "Tags": [],
+        "Subject": [],
+        "Audience": [],
+        "Partners": [],
+        "Completion Certificate": false
+    }
+}
+
+# TASK         
+Fill the items array with the fields from the excel sheet that was provided. An example of an item has been provided below The different categories should be: Title, Permalink, Image Featured, Tags, Tags String, Course Tags, Course Tags String, Course Categories, Content Type, Content Type String, Subject, Subject String, Audience, Audience String, Completition Certificate. 
+
+# Instructions
+Step 1: In the CSV file some of these categories have elements that are separated by "|", ",", or other characters. Be careful sometimes the elements are not properly separated by spaces, for example "a|b" should still be turned into "a", "b". For these categories create an array of elements. For example if the excel sheet has "a"|"b", you should translate this to ["a", "b"].
+Step 2: Replace all the abbreviations and remove duplicates. For example: Opioid Use Disorder (OUD), you would first replace OUD by Opioid Use Disorder, since it is a duplication you would remove one of them (including the extra parenthesis)
+Here is a list of replacements, do not replace any other abbreviations: "OUD": "Opioid Use Disorder", "MOUD": "Medication Opioid Use Disorder", "SUD": "Substance Use Disorder", "MAT": "Medication for addiction treatment", "MAR": "missing at random", "MCAR": "missing completely at random", "MNAR": "missing not at random", "ASAM": "American Society of Addiction Medicine", "CFR": "Code of Federal Regulations", "ACE": "Adverse Childhood Experiences", "HIPAA": "Health Insurance Portability and Accountability Act", "RNR": "Risk-Need-Responsivity", "LEAP": "learning experiences to advance practice", "APF": "Addiction Policy Forum", "CBT": "Cognitive Behavioral Therapy", "NIH": "National Institutes of Health", "UMASS": "University of Massachusetts", "TASC": "Treatment Alternatives for Safer Communities"
+Step 3: make sure all the characters in the content column (the strings in the content column) contain only characters that can be sent through an API call. 
+Step 4: Make sure you did everything right, and check for mistakes. 
+Step 5: if any values are missing use null. YOU must not use NaN or any other values that wouldn't be allowed in an API call. If there values missing just use null.
+Step 6: highlight anything you think wasn't done clearly
+Step 7: Take a deep breath and review the solution
+Step 8: Make any corrections necessary without deviating from the instructions
+Step 9: Ensure that all NaN or missing values are replaced with null in the output JSON. Do not use any other placeholder such as NaN, undefined, or empty strings.
+Step 10: Add all the elements from "Course Tags" to the "Tags" array. Make sure that you add all elements and that you remove all duplicates.
+Step 11: Output the CSV file with the items filled.
+
+# Item example
+    {
+        "Implementing the NIATx Model of Process Improvement": {
+            "Title": "Implementing the NIATx Model of Process Improvement",
+            "Permalink": "https://www.jcoinctc.org/courses/implementing-niatx/",
+            "Image Featured": "https://www.jcoinctc.org/wp-content/uploads/NIATx-Thumbnail-2.jpg",
+            "Content": "The course 'Implementing the NIATx Model of Process Improvement' teaches agencies how to use NIATx to improve addiction treatment services and operations. It covers process improvement strategies to increase access and retention in treatment programs, with a focus on implementing these strategies in justice settings. The course includes tools and resources such as change project guides, flowcharting exercises, and sustainability plans. It is designed for agencies working in criminal justice or community-based settings.",
+            "Content Type": "Courses",
+            "Tags": [
+                "Criminal legal system practitioners",
+                "OUD",
+                "Recovery",
+                "Research",
+                "Researchers",
+                "Students/Educators",
+                "SUD",
+                "Treatment providers"
+            ],
+            "Course Tags": [
+                "Change Project",
+                "Change Team",
+                "Coach",
+                "Coaching",
+                "Flowcharting",
+                "Implementation Core",
+                "Increase Admissions",
+                "Increase Continuation",
+                "Measuring Change",
+                "NGT",
+                "NIATx",
+                "Nominal Group Technique",
+                "PDSA",
+                "Plan-Do-Study-Act",
+                "Planning Change",
+                "Process Improvement",
+                "Processes",
+                "Rapid Cycle Testing",
+                "Reduce No-Shows",
+                "Reduce Wait Times",
+                "Sustainability Plan",
+                "Systems Change",
+                "Walk-Through"
+            ],
+            "Subject": [
+                "Opioid Use Disorder (OUD)",
+                "Recovery",
+                "Research",
+                "Substance Use Disorder (SUD)"
+            ],
+            "Audience": [
+                "Criminal Legal System Practitioners",
+                "Researchers",
+                "Students & Educators",
+                "Treatment Providers"
+            ],
+            "Partners": [
+                "JCOIN CTC",
+                "University of Wisconsin-Madison"
+            ],
+            "Completion Certificate": true
+        }
+    }

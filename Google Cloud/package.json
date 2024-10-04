@@ -1,0 +1,19 @@
+{
+    "name": "generate-token",
+    "version": "1.0.0",
+    "description": "Google Cloud Function to generate OAuth token for BigQuery access",
+    "main": "index.js",
+    "dependencies": {
+      "google-auth-library": "^9.14.1"
+    },
+    "scripts": {
+      "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "keywords": []
+  }
+  
+
+
+
