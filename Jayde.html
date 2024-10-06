@@ -26,7 +26,8 @@
         DateExtension,
         ConfettiExtension,
         FeedbackExtension,
-        URLExtension 
+        URLExtension,
+        FeedbackFormExtension
       } from 'https://itsphily.github.io/jcoin/extensions.js';
 
       // Load the Voiceflow chat widget script
@@ -44,8 +45,8 @@
             autostart: false,
             allowDangerousHTML: true,
             assistant: {
-              // test.css replace with this when going into development
-              stylesheet: "https://itsphily.github.io/jcoin/styles.css",
+              //https://itsphily.github.io/jcoin/styles.css replace with this when going into development
+              stylesheet: "test.css",
               extensions: [
                 DisableInputExtension,
                 VideoExtension,
@@ -58,6 +59,7 @@
                 ConfettiExtension,
                 URLExtension, 
                 FeedbackExtension,
+                FeedbackFormExtension
               ],
             },
           }).then(() => {
