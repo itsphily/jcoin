@@ -559,41 +559,8 @@ export const FeedbackExtension = {
   },
 }
 
-export const URLExtension = {
-  name: 'OpenURL',
-  type: 'effect',
-  match: ({ trace }) =>
-    trace.type === 'ext_open_url' || trace.payload.name === 'ext_open_url',
-  effect: ({ trace }) => {
-    const url = trace.payload.url;
-    if (url) {
-      openURLInIframe(url);
-    } else {
-      console.error('No URL provided in the payload.');
-    }
-  },
-}
-
-// Helper function to open the URL in an iframe
-const openURLInIframe = (url) => {
-  let iframe = document.querySelector('#content-iframe');
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = 'content-iframe';
-    iframe.style.position = 'absolute';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100vw';
-    iframe.style.height = '100vh';
-    iframe.style.zIndex = '1';
-    iframe.style.border = 'none';
-    document.body.appendChild(iframe);
-  }
-  iframe.src = url;
-}
-
 export const FeedbackFormExtension = {
-  name: 'Forms',
+  name: 'FeedbackForms',
   type: 'response',
   match: ({ trace }) =>
     trace.type === 'ext_feedbackform' || trace.payload.name === 'ext_feedbackform',
@@ -671,4 +638,40 @@ export const FeedbackFormExtension = {
         element.appendChild(formContainer)
       },
     }
+
+
+export const URLExtension = {
+  name: 'OpenURL',
+  type: 'effect',
+  match: ({ trace }) =>
+    trace.type === 'ext_open_url' || trace.payload.name === 'ext_open_url',
+  effect: ({ trace }) => {
+    const url = trace.payload.url;
+    if (url) {
+      openURLInIframe(url);
+    } else {
+      console.error('No URL provided in the payload.');
+    }
+  },
+}
+
+// Helper function to open the URL in an iframe
+const openURLInIframe = (url) => {
+  let iframe = document.querySelector('#content-iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'content-iframe';
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100vw';
+    iframe.style.height = '100vh';
+    iframe.style.zIndex = '1';
+    iframe.style.border = 'none';
+    document.body.appendChild(iframe);
+  }
+  iframe.src = url;
+}
+
+
     
