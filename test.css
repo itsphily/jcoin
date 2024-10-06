@@ -284,3 +284,17 @@ footer button.vfrc-button--primary[label=Cancel]::after {
   padding: 0;     /* Remove any padding that might add extra space */
   margin: 0;      /* Ensure no margin adds extra space */
 }
+
+
+.vfrc-message c-gMpNkY vfrc-message--chat c-PJLV c-PJLV-jueArD-from-system vfrc-message--extension-Feedback {
+background-color: #ffffff; /* White background */
+padding: 15px;
+border: 1px solid #ddd; /* Light gray border */
+border-radius: 10px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+max-width: 300px;
+margin: 10px auto; /* Center the container */
+display: flex;
+flex-direction: column;
+align-items: center;
+}

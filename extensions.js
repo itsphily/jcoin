@@ -469,95 +469,113 @@ export const FeedbackExtension = {
   match: ({ trace }) =>
     trace.type === 'ext_feedback' || trace.payload.name === 'ext_feedback',
   render: ({ trace, element }) => {
-    const feedbackContainer = document.createElement('div')
+    const feedbackContainer = document.createElement('div');
+    feedbackContainer.classList.add('vfrc-feedback-container'); // Unique class
 
     feedbackContainer.innerHTML = `
-          <style>
-            .vfrc-feedback {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
+      <style>
+        /* Scoped Styles for Feedback Form */
+        .vfrc-feedback-container {
+          background-color: #ffffff; /* White background */
+          padding: 15px;
+          border: 1px solid #ddd; /* Light gray border */
+          border-radius: 10px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+          max-width: 300px;
+          margin: 10px auto; /* Center the container */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
 
-            .vfrc-feedback--description {
-                font-size: 0.8em;
-                color: grey;
-                pointer-events: none;
-            }
+        .vfrc-feedback--description {
+          font-size: 1em;
+          color: #333;
+          margin-bottom: 10px;
+          text-align: center;
+        }
 
-            .vfrc-feedback--buttons {
-                display: flex;
-            }
+        .vfrc-feedback--buttons {
+          display: flex;
+          justify-content: center;
+          gap: 20px; /* Space between buttons */
+        }
 
-            .vfrc-feedback--button {
-                margin: 0;
-                padding: 0;
-                margin-left: 0px;
-                border: none;
-                background: none;
-                opacity: 0.2;
-            }
+        .vfrc-feedback--button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 5px;
+          opacity: 0.6;
+          transition: opacity 0.3s;
+        }
 
-            .vfrc-feedback--button:hover {
-              opacity: 0.5; /* opacity on hover */
-            }
+        .vfrc-feedback--button:hover {
+          opacity: 1;
+        }
 
-            .vfrc-feedback--button.selected {
-              opacity: 0.6;
-            }
+        .vfrc-feedback--button.selected {
+          opacity: 1;
+        }
 
-            .vfrc-feedback--button.disabled {
-                pointer-events: none;
-            }
+        .vfrc-feedback--button.disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
 
-            .vfrc-feedback--button:first-child svg {
-                fill: none; /* color for thumb up */
-                stroke: none;
-                border: none;
-                margin-left: 6px;
-            }
+        .vfrc-feedback--button svg {
+          width: 24px;
+          height: 24px;
+          color: #2e6ee1; /* Icon color */
+        }
 
-            .vfrc-feedback--button:last-child svg {
-                margin-left: 4px;
-                fill: none; /* color for thumb down */
-                stroke: none;
-                border: none;
-                transform: rotate(180deg);
-            }
-          </style>
-          <div class="vfrc-feedback">
-            <div class="vfrc-feedback--description">Was this helpful?</div>
-            <div class="vfrc-feedback--buttons">
-              <button class="vfrc-feedback--button" data-feedback="1">${SVG_Thumb}</button>
-              <button class="vfrc-feedback--button" data-feedback="0">${SVG_Thumb}</button>
-            </div>
-          </div>
-        `
+        /* Override existing message styles */
+        .vfrc-message--extension-Feedback {
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          margin: 10px auto !important;
+          padding: 0 !important;
+          max-width: none !important;
+        }
+      </style>
+      <div class="vfrc-feedback">
+        <div class="vfrc-feedback--description">Was this helpful?</div>
+        <div class="vfrc-feedback--buttons">
+          <button class="vfrc-feedback--button" data-feedback="1" aria-label="Thumbs Up">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="0" aria-label="Thumbs Down">${SVG_Thumb}</button>
+        </div>
+      </div>
+    `;
 
+    // Add event listeners to feedback buttons
     feedbackContainer
       .querySelectorAll('.vfrc-feedback--button')
       .forEach((button) => {
-        button.addEventListener('click', function (event) {
-          const feedback = this.getAttribute('data-feedback')
+        button.addEventListener('click', function () {
+          const feedback = this.getAttribute('data-feedback');
           window.voiceflow.chat.interact({
             type: 'complete',
             payload: { feedback: feedback },
-          })
+          });
 
+          // Disable all buttons and highlight the selected one
           feedbackContainer
             .querySelectorAll('.vfrc-feedback--button')
             .forEach((btn) => {
-              btn.classList.add('disabled')
+              btn.classList.add('disabled');
               if (btn === this) {
-                btn.classList.add('selected')
+                btn.classList.add('selected');
               }
-            })
-        })
-      })
+            });
+        });
+      });
 
-    element.appendChild(feedbackContainer)
+    // Append the feedback container
+    element.appendChild(feedbackContainer);
   },
-}
+};
+
 
 export const FeedbackFormExtension = {
   name: 'FeedbackForms',
