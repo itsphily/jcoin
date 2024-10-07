@@ -57,7 +57,7 @@ export const FeedbackFormExtension = {
           max-width: 300px;
           width: 100%; /* Take full width */
           margin: 0 auto;
-          padding: 25px 10px 10px; /* Increase top padding to make room for close button */
+          /* padding: 25px 10px 10px; /* Increase top padding to make room for close button */
           border-radius: 5px;
           position: relative; /* For positioning the close button */
           font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Use the same font */
@@ -66,7 +66,6 @@ export const FeedbackFormExtension = {
           margin-top: 0;
           font-size: 1em;
           color: #333;
-          text-align: center; /* Center the heading */
         }
         .feedback-form-container textarea {
           width: 100%;
@@ -92,15 +91,23 @@ export const FeedbackFormExtension = {
           border-radius: 5px;
           cursor: pointer;
           font-family: inherit; /* Use the same font */
+          transition: background-color 0.3s, color 0.3s; /* Smooth hover transition */
         }
         .feedback-form-container .submit {
-          background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
+          background: #00705d;
           flex: 0 0 75%; /* Take 75% of available width */
+        }
+        .feedback-form-container .submit:hover {
+          background: #00564a; /* Darker shade on hover */
         }
         .feedback-form-container .skip {
           background: #ccc;
           color: #333;
           flex: 0 0 25%; /* Take 25% of available width */
+        }
+        .feedback-form-container .skip:hover {
+          background: #999; /* Darker gray on hover */
+          color: #fff; /* Change text color to white on hover */
         }
         .feedback-form-container .close-button {
           position: absolute;
