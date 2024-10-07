@@ -477,10 +477,7 @@ export const FeedbackExtension = {
         /* Scoped Styles for Feedback Form */
         .vfrc-feedback-container {
           background-color: #ffffff; /* White background */
-          padding: 15px;
-          border: 1px solid #ddd; /* Light gray border */
-          border-radius: 10px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+          padding: 5px;
           max-width: 300px;
           margin: 10px auto; /* Center the container */
           display: flex;
@@ -542,8 +539,8 @@ export const FeedbackExtension = {
       <div class="vfrc-feedback">
         <div class="vfrc-feedback--description">Was this helpful?</div>
         <div class="vfrc-feedback--buttons">
-          <button class="vfrc-feedback--button" data-feedback="1" aria-label="Thumbs Up">${SVG_Thumb}</button>
-          <button class="vfrc-feedback--button" data-feedback="0" aria-label="Thumbs Down">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="1">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="0">${SVG_Thumb}</button>
         </div>
       </div>
     `;
