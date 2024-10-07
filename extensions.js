@@ -462,3 +462,233 @@ export const ConfettiExtension = {
     })
   },
 }
+
+export const FeedbackExtension = {
+  name: 'Feedback',
+  type: 'response',
+  match: ({ trace }) =>
+    trace.type === 'ext_feedback' || trace.payload.name === 'ext_feedback',
+  render: ({ trace, element }) => {
+    const feedbackContainer = document.createElement('div');
+    feedbackContainer.classList.add('vfrc-feedback-container'); // Unique class
+
+    feedbackContainer.innerHTML = `
+      <style>
+        /* Scoped Styles for Feedback Form */
+        .vfrc-feedback-container {
+          background-color: #ffffff; /* White background */
+          padding: 15px;
+          border: 1px solid #ddd; /* Light gray border */
+          border-radius: 10px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+          max-width: 300px;
+          margin: 10px auto; /* Center the container */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .vfrc-feedback--description {
+          font-size: 1em;
+          color: #333;
+          margin-bottom: 10px;
+          text-align: center;
+        }
+
+        .vfrc-feedback--buttons {
+          display: flex;
+          justify-content: center;
+          gap: 20px; /* Space between buttons */
+        }
+
+        .vfrc-feedback--button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 5px;
+          opacity: 0.6;
+          transition: opacity 0.3s;
+        }
+
+        .vfrc-feedback--button:hover {
+          opacity: 1;
+        }
+
+        .vfrc-feedback--button.selected {
+          opacity: 1;
+        }
+
+        .vfrc-feedback--button.disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
+
+        .vfrc-feedback--button svg {
+          width: 24px;
+          height: 24px;
+          color: #2e6ee1; /* Icon color */
+        }
+
+        /* Override existing message styles */
+        .vfrc-message--extension-Feedback {
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          margin: 10px auto !important;
+          padding: 0 !important;
+          max-width: none !important;
+        }
+      </style>
+      <div class="vfrc-feedback">
+        <div class="vfrc-feedback--description">Was this helpful?</div>
+        <div class="vfrc-feedback--buttons">
+          <button class="vfrc-feedback--button" data-feedback="1" aria-label="Thumbs Up">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="0" aria-label="Thumbs Down">${SVG_Thumb}</button>
+        </div>
+      </div>
+    `;
+
+    // Add event listeners to feedback buttons
+    feedbackContainer
+      .querySelectorAll('.vfrc-feedback--button')
+      .forEach((button) => {
+        button.addEventListener('click', function () {
+          const feedback = this.getAttribute('data-feedback');
+          window.voiceflow.chat.interact({
+            type: 'complete',
+            payload: { feedback: feedback },
+          });
+
+          // Disable all buttons and highlight the selected one
+          feedbackContainer
+            .querySelectorAll('.vfrc-feedback--button')
+            .forEach((btn) => {
+              btn.classList.add('disabled');
+              if (btn === this) {
+                btn.classList.add('selected');
+              }
+            });
+        });
+      });
+
+    // Append the feedback container
+    element.appendChild(feedbackContainer);
+  },
+};
+
+
+export const FeedbackFormExtension = {
+  name: 'FeedbackForms',
+  type: 'response',
+  match: ({ trace }) =>
+    trace.type === 'ext_feedbackform' || trace.payload.name === 'ext_feedbackform',
+  render: ({ trace, element }) => {
+    const formContainer = document.createElement('form')
+
+    formContainer.innerHTML = `
+          <style>
+            label {
+              font-size: 0.8em;
+              color: #888;
+            }
+            input[type="text"], input[type="email"], input[type="tel"] {
+              width: 100%;
+              border: none;
+              border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+              background: transparent;
+              margin: 5px 0;
+              outline: none;
+            }
+            .phone {
+              width: 150px;
+            }
+            .invalid {
+              border-color: red;
+            }
+            .submit {
+              background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
+              border: none;
+              color: white;
+              padding: 10px;
+              border-radius: 5px;
+              width: 100%;
+              cursor: pointer;
+            }
+          </style>
+
+          <label for="name">Name</label>
+          <input type="text" class="name" name="name" required><br><br>
+
+          <label for="email">Email</label>
+          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address"><br><br>
+
+          <label for="phone">Phone Number</label>
+          <input type="tel" class="phone" name="phone" required pattern="\\d+" title="Invalid phone number, please enter only numbers"><br><br>
+
+          <input type="submit" class="submit" value="Submit">
+        `
+        formContainer.addEventListener('submit', function (event) {
+          event.preventDefault()
+    
+          const name = formContainer.querySelector('.name')
+          const email = formContainer.querySelector('.email')
+          const phone = formContainer.querySelector('.phone')
+    
+          if (
+            !name.checkValidity() ||
+            !email.checkValidity() ||
+            !phone.checkValidity()
+          ) {
+            name.classList.add('invalid')
+            email.classList.add('invalid')
+            phone.classList.add('invalid')
+            return
+          }
+    
+          formContainer.querySelector('.submit').remove()
+    
+          window.voiceflow.chat.interact({
+            type: 'complete',
+            payload: { name: name.value, email: email.value, phone: phone.value },
+          })
+        })
+    
+        element.appendChild(formContainer)
+      },
+    }
+
+export const URLExtension = {
+  name: 'OpenURL',
+  type: 'effect',
+  match: ({ trace }) =>
+    trace.type === 'ext_open_url' || trace.payload.name === 'ext_open_url',
+  effect: ({ trace }) => {
+    const url = trace.payload.url;
+    if (url) {
+      openURLInIframe(url);
+    } else {
+      console.error('No URL provided in the payload.');
+    }
+  },
+}
+
+// Helper function to open the URL in an iframe
+const openURLInIframe = (url) => {
+  let iframe = document.querySelector('#content-iframe');
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'content-iframe';
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100vw';
+    iframe.style.height = '100vh';
+    iframe.style.zIndex = '1';
+    iframe.style.border = 'none';
+    document.body.appendChild(iframe);
+  }
+  iframe.src = url;
+}
+
+
+    
