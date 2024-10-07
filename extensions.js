@@ -32,86 +32,124 @@ export const DisableInputExtension = {
   },
 }
 
-export const FormExtension = {
-  name: 'Forms',
+// FeedbackFormExtension displays a form to collect user feedback when they click the thumb down button.
+// Users can submit their feedback or close the form without submitting.
+export const FeedbackFormExtension = {
+  // Name of the extension
+  name: 'FeedbackForm',
+  // Type of the extension
   type: 'response',
+  // Match function to determine when to render this extension
   match: ({ trace }) =>
-    trace.type === 'ext_form' || trace.payload.name === 'ext_form',
+    trace.type === 'ext_feedback_form' || trace.payload.name === 'ext_feedback_form',
+  // Render function to display the form
   render: ({ trace, element }) => {
-    const formContainer = document.createElement('form')
+    // Create a container div for the form and close button
+    const formContainer = document.createElement('div');
+    formContainer.classList.add('feedback-form-container');
 
+    // Set the inner HTML of the container, including styles, form elements, and the close button
     formContainer.innerHTML = `
-          <style>
-            label {
-              font-size: 0.8em;
-              color: #888;
-            }
-            input[type="text"], input[type="email"], input[type="tel"] {
-              width: 100%;
-              border: none;
-              border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-              background: transparent;
-              margin: 5px 0;
-              outline: none;
-            }
-            .phone {
-              width: 150px;
-            }
-            .invalid {
-              border-color: red;
-            }
-            .submit {
-              background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
-              border: none;
-              color: white;
-              padding: 10px;
-              border-radius: 5px;
-              width: 100%;
-              cursor: pointer;
-            }
-          </style>
+      <style>
+        /* Styles for the feedback form */
+        .feedback-form-container {
+          background-color: #ffffff;
+          max-width: 300px;
+          margin: 0 auto;
+          padding: 10px;
+          border-radius: 5px;
+          position: relative; /* For positioning the close button */
+        }
+        .feedback-form-container h3 {
+          margin-top: 0;
+          font-size: 1em;
+          color: #333;
+        }
+        .feedback-form-container textarea {
+          width: 100%;
+          height: 80px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          padding: 5px;
+          resize: vertical;
+        }
+        .feedback-form-container .submit {
+          background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
+          border: none;
+          color: white;
+          padding: 10px;
+          border-radius: 5px;
+          width: 100%;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+        .feedback-form-container .close-button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          background: none;
+          border: none;
+          font-size: 16px;
+          cursor: pointer;
+          color: #aaa;
+        }
+        .feedback-form-container .close-button:hover {
+          color: #333;
+        }
+      </style>
+      <!-- Close button -->
+      <button class="close-button" aria-label="Close">&times;</button>
+      <!-- Form heading -->
+      <h3>Please tell us why you're unsatisfied:</h3>
+      <!-- Feedback input -->
+      <textarea class="feedback-input" placeholder="Your feedback..."></textarea>
+      <!-- Submit button -->
+      <button class="submit">Submit Feedback</button>
+    `;
 
-          <label for="name">Name</label>
-          <input type="text" class="name" name="name" required><br><br>
+    // Get references to the close button, submit button, and feedback input
+    const closeButton = formContainer.querySelector('.close-button');
+    const submitButton = formContainer.querySelector('.submit');
+    const feedbackInput = formContainer.querySelector('.feedback-input');
 
-          <label for="email">Email</label>
-          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address"><br><br>
+    // Event listener for the close button to close the form without submitting feedback
+    closeButton.addEventListener('click', function () {
+      // Remove the form from the chat widget
+      formContainer.remove();
 
-          <label for="phone">Phone Number</label>
-          <input type="tel" class="phone" name="phone" required pattern="\\d+" title="Invalid phone number, please enter only numbers"><br><br>
-
-          <input type="submit" class="submit" value="Submit">
-        `
-
-    formContainer.addEventListener('submit', function (event) {
-      event.preventDefault()
-
-      const name = formContainer.querySelector('.name')
-      const email = formContainer.querySelector('.email')
-      const phone = formContainer.querySelector('.phone')
-
-      if (
-        !name.checkValidity() ||
-        !email.checkValidity() ||
-        !phone.checkValidity()
-      ) {
-        name.classList.add('invalid')
-        email.classList.add('invalid')
-        phone.classList.add('invalid')
-        return
-      }
-
-      formContainer.querySelector('.submit').remove()
-
+      // Send a 'complete' interaction without payload to proceed to the next step
       window.voiceflow.chat.interact({
         type: 'complete',
-        payload: { name: name.value, email: email.value, phone: phone.value },
-      })
-    })
+      });
+    });
 
-    element.appendChild(formContainer)
+    // Event listener for the submit button to submit the feedback
+    submitButton.addEventListener('click', function () {
+      // Get the feedback text
+      const feedback = feedbackInput.value.trim();
+
+      //uncomment this code if you don't want to allow for empty feedback
+      /*if (!feedback) {
+        // If feedback is empty, alert the user or prevent submission
+      //  alert('Please enter your feedback before submitting.');
+        return;
+      }*/
+
+      // Remove the form from the chat widget
+      formContainer.remove();
+
+      // Send the feedback back to Voiceflow as a 'complete' interaction with payload
+      window.voiceflow.chat.interact({
+        type: 'complete',
+        payload: { feedback: feedback },
+      });
+    });
+
+    // Append the form container to the chat widget element
+    element.appendChild(formContainer);
   },
-}
+};
+
 
 export const MapExtension = {
   name: 'Maps',
