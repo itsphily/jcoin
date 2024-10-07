@@ -572,85 +572,100 @@ export const FeedbackExtension = {
   },
 };
 
-export const FeedbackFormExtension = {
-  name: 'FeedbackForms',
+export const FeedbackExtension = {
+  name: 'Feedback',
   type: 'response',
   match: ({ trace }) =>
-    trace.type === 'ext_feedbackform' || trace.payload.name === 'ext_feedbackform',
+    trace.type === 'ext_feedback' || trace.payload.name === 'ext_feedback',
   render: ({ trace, element }) => {
-    const formContainer = document.createElement('form')
+    const feedbackContainer = document.createElement('div');
 
-    formContainer.innerHTML = `
-          <style>
-            label {
-              font-size: 0.8em;
-              color: #888;
-            }
-            input[type="text"], input[type="email"], input[type="tel"] {
-              width: 100%;
-              border: none;
-              border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-              background: transparent;
-              margin: 5px 0;
-              outline: none;
-            }
-            .phone {
-              width: 150px;
-            }
-            .invalid {
-              border-color: red;
-            }
-            .submit {
-              background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
-              border: none;
-              color: white;
-              padding: 10px;
-              border-radius: 5px;
-              width: 100%;
-              cursor: pointer;
-            }
-          </style>
+    // Define separate SVGs for thumb up and thumb down
+    const SVG_ThumbUp = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00705D" viewBox="0 0 24 24">
+        <path d="M2 20h4V9H2v11zM22 9h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L15.17 2 8.58 8.59C8.21 8.95 8 9.45 8 10v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.5c0-.55-.45-1-1-1z"/>
+      </svg>
+    `;
 
-          <label for="name">Name</label>
-          <input type="text" class="name" name="name" required><br><br>
+    const SVG_ThumbDown = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#00705D" viewBox="0 0 24 24">
+        <path d="M22 4H12.83l-.95-4.57L11.83 0 6.41 5.41C6.04 5.76 6 6.25 6 6.75v11c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.5c0-.55-.45-1-1-1zM2 4h4v15H2V4z"/>
+      </svg>
+    `;
 
-          <label for="email">Email</label>
-          <input type="email" class="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Invalid email address"><br><br>
+    feedbackContainer.innerHTML = `
+      <style>
+        .vfrc-feedback {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
 
-          <label for="phone">Phone Number</label>
-          <input type="tel" class="phone" name="phone" required pattern="\\d+" title="Invalid phone number, please enter only numbers"><br><br>
+        .vfrc-feedback--description {
+            font-size: 0.9em;
+            color: grey;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
 
-          <input type="submit" class="submit" value="Submit">
-        `
-        formContainer.addEventListener('submit', function (event) {
-          event.preventDefault()
-    
-          const name = formContainer.querySelector('.name')
-          const email = formContainer.querySelector('.email')
-          const phone = formContainer.querySelector('.phone')
-    
-          if (
-            !name.checkValidity() ||
-            !email.checkValidity() ||
-            !phone.checkValidity()
-          ) {
-            name.classList.add('invalid')
-            email.classList.add('invalid')
-            phone.classList.add('invalid')
-            return
-          }
-    
-          formContainer.querySelector('.submit').remove()
-    
+        .vfrc-feedback--buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .vfrc-feedback--button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .vfrc-feedback--button:hover {
+            opacity: 1;
+        }
+
+        .vfrc-feedback--button.selected {
+            opacity: 1;
+        }
+
+        .vfrc-feedback--button.disabled {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+      </style>
+      <div class="vfrc-feedback">
+        <div class="vfrc-feedback--description">Was this helpful?</div>
+        <div class="vfrc-feedback--buttons">
+          <button class="vfrc-feedback--button" data-feedback="1">${SVG_ThumbUp}</button>
+          <button class="vfrc-feedback--button" data-feedback="0">${SVG_ThumbDown}</button>
+        </div>
+      </div>
+    `;
+
+    feedbackContainer
+      .querySelectorAll('.vfrc-feedback--button')
+      .forEach((button) => {
+        button.addEventListener('click', function () {
+          const feedback = this.getAttribute('data-feedback');
           window.voiceflow.chat.interact({
             type: 'complete',
-            payload: { name: name.value, email: email.value, phone: phone.value },
-          })
-        })
-    
-        element.appendChild(formContainer)
-      },
-    }
+            payload: { feedback: feedback },
+          });
 
+          feedbackContainer
+            .querySelectorAll('.vfrc-feedback--button')
+            .forEach((btn) => {
+              btn.classList.add('disabled');
+              if (btn === this) {
+                btn.classList.add('selected');
+              }
+            });
+        });
+      });
 
-    
+    element.appendChild(feedbackContainer);
+  },
+};

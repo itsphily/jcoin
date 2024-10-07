@@ -285,26 +285,21 @@ footer button.vfrc-button--primary[label=Cancel]::after {
   margin: 0;      /* Ensure no margin adds extra space */
 }
 
-/* Override styles for feedback form messages */
-.vfrc-message--extension-Feedback {
-  background: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  margin: 10px auto !important;
-  padding: 0 !important;
-  max-width: none !important;
+.vfrc-feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; /* Ensure it takes full width */
 }
 
-/* Ensure the feedback container stands out */
-.vfrc-feedback-container {
-  background-color: #ffffff; /* White background */
-  padding: 15px;
-  border: 1px solid #ddd; /* Light gray border */
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
-  max-width: 300px;
-  margin: 10px auto; /* Center the container */
+.vfrc-feedback--description {
+  font-size: 0.9em;
+  color: grey;
+  margin-right: 10px; /* Add some spacing between text and buttons */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.vfrc-feedback--buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 10px; /* Space between buttons */
 }
