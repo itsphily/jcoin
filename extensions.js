@@ -463,7 +463,6 @@ export const ConfettiExtension = {
   },
 }
 
-
 export const FeedbackExtension = {
   name: 'Feedback',
   type: 'response',
@@ -513,6 +512,9 @@ export const FeedbackExtension = {
             padding: 0;
             opacity: 0.6;
             transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .vfrc-feedback--button:hover {
@@ -531,8 +533,8 @@ export const FeedbackExtension = {
       <div class="vfrc-feedback">
         <div class="vfrc-feedback--description">Was this helpful?</div>
         <div class="vfrc-feedback--buttons">
-          <button class="vfrc-feedback--button" data-feedback="1">${SVG_ThumbUp}</button>
-          <button class="vfrc-feedback--button" data-feedback="0">${SVG_ThumbDown}</button>
+          <button class="vfrc-feedback--button" data-feedback="1" aria-label="Thumbs Up">${SVG_ThumbUp}</button>
+          <button class="vfrc-feedback--button" data-feedback="0" aria-label="Thumbs Down">${SVG_ThumbDown}</button>
         </div>
       </div>
     `;
