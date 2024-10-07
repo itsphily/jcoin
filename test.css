@@ -284,22 +284,3 @@ footer button.vfrc-button--primary[label=Cancel]::after {
   padding: 0;     /* Remove any padding that might add extra space */
   margin: 0;      /* Ensure no margin adds extra space */
 }
-
-.vfrc-feedback {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%; /* Ensure it takes full width */
-}
-
-.vfrc-feedback--description {
-  font-size: 0.9em;
-  color: grey;
-  margin-right: 10px; /* Add some spacing between text and buttons */
-  white-space: nowrap; /* Prevent text from wrapping */
-}
-
-.vfrc-feedback--buttons {
-  display: flex;
-  gap: 10px; /* Space between buttons */
-}
