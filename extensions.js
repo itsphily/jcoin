@@ -574,7 +574,7 @@ export const FeedbackExtension = {
     // Append the feedback container
     element.appendChild(feedbackContainer);
   },
-}
+};
 
 export const FeedbackFormExtension = {
   name: 'FeedbackForms',
