@@ -478,7 +478,6 @@ export const FeedbackExtension = {
         .vfrc-feedback-container {
           background-color: #ffffff; /* White background */
           padding: 5px;
-          max-width: 300px;
           margin: 10px auto; /* Center the container */
           display: flex;
           flex-direction: column;
@@ -486,7 +485,7 @@ export const FeedbackExtension = {
         }
 
         .vfrc-feedback--description {
-          font-size: 1em;
+          font-size: 14;
           color: #333;
           margin-bottom: 10px;
           text-align: center;
@@ -495,7 +494,7 @@ export const FeedbackExtension = {
         .vfrc-feedback--buttons {
           display: flex;
           justify-content: center;
-          gap: 20px; /* Space between buttons */
+          gap: 10px; /* Space between buttons */
         }
 
         .vfrc-feedback--button {
@@ -521,8 +520,8 @@ export const FeedbackExtension = {
         }
 
         .vfrc-feedback--button svg {
-          width: 24px;
-          height: 24px;
+          width: 12px;
+          height: 12px;
           color: #2e6ee1; /* Icon color */
         }
 
