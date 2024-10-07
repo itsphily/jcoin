@@ -33,7 +33,7 @@ export const DisableInputExtension = {
 }
 
 // FeedbackFormExtension displays a form to collect user feedback when they click the thumbs down button.
-// Users can submit their feedback or close the form without submitting.
+// Users can submit their feedback or skip without submitting.
 export const FeedbackFormExtension = {
   // Name of the extension
   name: 'FeedbackForm',
@@ -55,8 +55,9 @@ export const FeedbackFormExtension = {
         .feedback-form-container {
           background-color: transparent; /* Make background transparent */
           max-width: 300px;
+          width: 100%; /* Take full width */
           margin: 0 auto;
-          padding: 10px;
+          padding: 25px 10px 10px; /* Increase top padding to make room for close button */
           border-radius: 5px;
           position: relative; /* For positioning the close button */
           font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Use the same font */
@@ -78,21 +79,33 @@ export const FeedbackFormExtension = {
           display: block;
           margin: 0 auto; /* Center the textarea */
         }
-        .feedback-form-container .submit {
-          background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
+        .feedback-form-container .button-group {
+          display: flex;
+          justify-content: space-between;
+          gap: 2%; /* Space between buttons */
+          margin-top: 10px;
+        }
+        .feedback-form-container .submit, .feedback-form-container .skip {
           border: none;
           color: white;
           padding: 10px;
           border-radius: 5px;
-          width: 100%;
           cursor: pointer;
-          margin-top: 10px;
           font-family: inherit; /* Use the same font */
+        }
+        .feedback-form-container .submit {
+          background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
+          flex: 0 0 75%; /* Take 75% of available width */
+        }
+        .feedback-form-container .skip {
+          background: #ccc;
+          color: #333;
+          flex: 0 0 25%; /* Take 25% of available width */
         }
         .feedback-form-container .close-button {
           position: absolute;
-          top: 5px;
-          right: 5px;
+          top: 0;
+          right: 0;
           background: none;
           border: none;
           font-size: 16px;
@@ -119,17 +132,32 @@ export const FeedbackFormExtension = {
       <h3>Please tell us why you're unsatisfied:</h3>
       <!-- Feedback input -->
       <textarea class="feedback-input" placeholder="Your feedback..."></textarea>
-      <!-- Submit button -->
-      <button class="submit">Submit Feedback</button>
+      <!-- Buttons -->
+      <div class="button-group">
+        <button class="submit">Submit Feedback</button>
+        <button class="skip">Skip</button>
+      </div>
     `;
 
-    // Get references to the close button, submit button, and feedback input
+    // Get references to the close button, submit button, skip button, and feedback input
     const closeButton = formContainer.querySelector('.close-button');
     const submitButton = formContainer.querySelector('.submit');
+    const skipButton = formContainer.querySelector('.skip');
     const feedbackInput = formContainer.querySelector('.feedback-input');
 
     // Event listener for the close button to close the form without submitting feedback
     closeButton.addEventListener('click', function () {
+      // Remove the form from the chat widget
+      formContainer.remove();
+
+      // Send a 'complete' interaction without payload to proceed to the next step
+      window.voiceflow.chat.interact({
+        type: 'complete',
+      });
+    });
+
+    // Event listener for the skip button to close the form without submitting feedback
+    skipButton.addEventListener('click', function () {
       // Remove the form from the chat widget
       formContainer.remove();
 
@@ -164,7 +192,6 @@ export const FeedbackFormExtension = {
     element.appendChild(formContainer);
   },
 };
-
 
 export const MapExtension = {
   name: 'Maps',
