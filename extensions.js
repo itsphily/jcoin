@@ -478,38 +478,40 @@ export const FeedbackExtension = {
         .vfrc-feedback-container {
           background-color: #ffffff; /* White background */
           max-width: 300px;
-          margin: 10px auto; /* Center the container */
+          margin: 0 auto; /* Center the container, remove vertical margins */
           display: flex;
           flex-direction: column;
           align-items: center;
+          padding: 0; /* Remove padding to eliminate gaps */
         }
 
-        /* Modified to arrange text and buttons on the same line */
+        /* Arrange text and buttons on the same line */
         .vfrc-feedback {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 10px; /* Space between text and buttons */
+          gap: 5px; /* Adjust space between text and buttons if needed */
         }
 
-        /* Removed margin-bottom to keep text and buttons on the same line */
+        /* Adjusted font size to be smaller */
         .vfrc-feedback--description {
-          font-size: 1em;
+          font-size: 0.8em; /* Reduced font size */
           color: #333;
           text-align: center;
+          margin: 0; /* Remove margins to eliminate gaps */
         }
 
         .vfrc-feedback--buttons {
           display: flex;
           justify-content: center;
-          gap: 20px; /* Space between buttons */
+          gap: 5px; /* Adjust space between buttons */
         }
 
         .vfrc-feedback--button {
           background: none;
           border: none;
           cursor: pointer;
-          padding: 5px;
+          padding: 2px; /* Reduced padding for smaller icons */
           opacity: 0.6;
           transition: opacity 0.3s;
         }
@@ -528,8 +530,8 @@ export const FeedbackExtension = {
         }
 
         .vfrc-feedback--button svg {
-          width: 24px;
-          height: 24px;
+          width: 16px; /* Smaller size */
+          height: 16px;
           color: #2e6ee1; /* Icon color */
         }
 
@@ -538,13 +540,13 @@ export const FeedbackExtension = {
           transform: rotate(180deg);
         }
 
-        /* Override existing message styles */
+        /* Override existing message styles to remove gaps */
         .vfrc-message--extension-Feedback {
           background: none !important;
           border: none !important;
           box-shadow: none !important;
-          margin: 10px auto !important;
-          padding: 0 !important;
+          margin: 0 !important; /* Remove margins to eliminate gaps */
+          padding: 0 !important; /* Remove padding */
           max-width: none !important;
         }
       </style>

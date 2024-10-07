@@ -284,3 +284,8 @@ footer button.vfrc-button--primary[label=Cancel]::after {
   padding: 0;     /* Remove any padding that might add extra space */
   margin: 0;      /* Ensure no margin adds extra space */
 }
+
+/* Remove margins from extension messages to eliminate gaps */
+.vfrc-message--extension {
+  margin: 0 !important;
+}
