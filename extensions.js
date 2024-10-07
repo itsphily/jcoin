@@ -478,6 +478,19 @@ export const FeedbackExtension = {
                 align-items: center;
                 justify-content: space-between;
             }
+            
+            .vfrc-feedback-container {
+                background-color: #ffffff; /* White background */
+                padding: 15px;
+                border: 1px solid #ddd; /* Light gray border */
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow */
+                max-width: 300px;
+                margin: 10px auto; /* Center the container */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
 
             .vfrc-feedback--description {
                 font-size: 0.8em;
