@@ -484,10 +484,18 @@ export const FeedbackExtension = {
           align-items: center;
         }
 
+        /* Modified to arrange text and buttons on the same line */
+        .vfrc-feedback {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px; /* Space between text and buttons */
+        }
+
+        /* Removed margin-bottom to keep text and buttons on the same line */
         .vfrc-feedback--description {
           font-size: 1em;
           color: #333;
-          margin-bottom: 10px;
           text-align: center;
         }
 
@@ -523,6 +531,11 @@ export const FeedbackExtension = {
           width: 24px;
           height: 24px;
           color: #2e6ee1; /* Icon color */
+        }
+
+        /* Rotate the thumb down icon by 180 degrees */
+        .vfrc-feedback--button[data-feedback="0"] svg {
+          transform: rotate(180deg);
         }
 
         /* Override existing message styles */
