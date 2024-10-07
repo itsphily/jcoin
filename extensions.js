@@ -32,7 +32,7 @@ export const DisableInputExtension = {
   },
 }
 
-// FeedbackFormExtension displays a form to collect user feedback when they click the thumb down button.
+// FeedbackFormExtension displays a form to collect user feedback when they click the thumbs down button.
 // Users can submit their feedback or close the form without submitting.
 export const FeedbackFormExtension = {
   // Name of the extension
@@ -53,17 +53,19 @@ export const FeedbackFormExtension = {
       <style>
         /* Styles for the feedback form */
         .feedback-form-container {
-          background-color: #ffffff;
+          background-color: transparent; /* Make background transparent */
           max-width: 300px;
           margin: 0 auto;
           padding: 10px;
           border-radius: 5px;
           position: relative; /* For positioning the close button */
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Use the same font */
         }
         .feedback-form-container h3 {
           margin-top: 0;
           font-size: 1em;
           color: #333;
+          text-align: center; /* Center the heading */
         }
         .feedback-form-container textarea {
           width: 100%;
@@ -72,6 +74,9 @@ export const FeedbackFormExtension = {
           border-radius: 4px;
           padding: 5px;
           resize: vertical;
+          font-family: inherit; /* Use the same font */
+          display: block;
+          margin: 0 auto; /* Center the textarea */
         }
         .feedback-form-container .submit {
           background: linear-gradient(to right, #2e6ee1, #2e7ff1 );
@@ -82,6 +87,7 @@ export const FeedbackFormExtension = {
           width: 100%;
           cursor: pointer;
           margin-top: 10px;
+          font-family: inherit; /* Use the same font */
         }
         .feedback-form-container .close-button {
           position: absolute;
@@ -92,9 +98,19 @@ export const FeedbackFormExtension = {
           font-size: 16px;
           cursor: pointer;
           color: #aaa;
+          font-family: inherit; /* Use the same font */
         }
         .feedback-form-container .close-button:hover {
           color: #333;
+        }
+        /* Override existing message styles to make background transparent and remove bubble */
+        .vfrc-message--extension-FeedbackForm {
+          background: none !important;
+          border: none !important;
+          box-shadow: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          max-width: none !important;
         }
       </style>
       <!-- Close button -->
@@ -128,12 +144,11 @@ export const FeedbackFormExtension = {
       // Get the feedback text
       const feedback = feedbackInput.value.trim();
 
-      //uncomment this code if you don't want to allow for empty feedback
-      /*if (!feedback) {
+      if (!feedback) {
         // If feedback is empty, alert the user or prevent submission
-      //  alert('Please enter your feedback before submitting.');
+        alert('Please enter your feedback before submitting.');
         return;
-      }*/
+      }
 
       // Remove the form from the chat widget
       formContainer.remove();
