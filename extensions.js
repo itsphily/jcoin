@@ -627,11 +627,6 @@ export const FeedbackExtension = {
         })
       })
 
-<<<<<<< HEAD
-    element.appendChild(feedbackContainer);
-  },
-};
-=======
     element.appendChild(feedbackContainer)
   },
 }
@@ -749,7 +744,3 @@ const openURLInIframe = (url) => {
   }
   iframe.src = url;
 }
-
-
-    
->>>>>>> parent of b2d3d8d (testing new feedback form)
