@@ -35,21 +35,26 @@ Your task is to output a JSON file with the following format:
 
 # TASK         
 Fill the items array with the fields from the excel sheet that was provided. An example of an item has been provided below The different categories should be: Title, Permalink, Content, Summary, Image Featured, Tags, Tags String, Course Tags, Course Tags String, Course Categories, Content Type, Content Type String, Subject, Subject String, Audience, Audience String, Completition Certificate. 
+When building the json file, you must maintain the order of the keys ("Permalink", "Image Featured"...) as shown in the example.
 
 # Instructions
+
+Before executing any of those steps, read each of the steps 1 to 14, make a plan on how you plan to address and complete each of those steps. You must follow the instructions in each steps fully. Take a deep breathe, and start. 
+
 Step 1: In the CSV file some of these categories have elements that are separated by "|", ",", or other characters. Be careful sometimes the elements are not properly separated by spaces, for example "a|b" should still be turned into "a", "b". For these categories create an array of elements. For example if the excel sheet has "a"|"b", you should translate this to ["a", "b"].
 Step 2: Replace all the abbreviations and remove duplicates. For example: Opioid Use Disorder (OUD), you would first replace OUD by Opioid Use Disorder, since it is a duplication you would remove one of them (including the extra parenthesis)
 Here is a list of replacements, do not replace any other abbreviations: "OUD": "Opioid Use Disorder", "MOUD": "Medication Opioid Use Disorder", "SUD": "Substance Use Disorder", "MAT": "Medication for addiction treatment", "MAR": "missing at random", "MCAR": "missing completely at random", "MNAR": "missing not at random", "ASAM": "American Society of Addiction Medicine", "CFR": "Code of Federal Regulations", "ACE": "Adverse Childhood Experiences", "HIPAA": "Health Insurance Portability and Accountability Act", "RNR": "Risk-Need-Responsivity", "LEAP": "learning experiences to advance practice", "APF": "Addiction Policy Forum", "CBT": "Cognitive Behavioral Therapy", "NIH": "National Institutes of Health", "UMASS": "University of Massachusetts", "TASC": "Treatment Alternatives for Safer Communities"
 Step 3: The following categories should be arrays: Tags, Course Tags, Content Type, Subject, Audience. You should create additional categories which will be included in the item. The additional categories will be a single string that will include all the elements from each the arrays.
-Step 4: For each item, generate a concise and engaging summary that captures the core ideas from the content without using the course title or repetitive phrases (such as "This course"). Focus on simplifying the language, removing unnecessary details, and reducing the length. The summary should highlight the main objectives or outcomes of the course. Aim to keep it under 2-3 sentences, depending on the length of the content. If the content mentions tools, techniques, or key concepts, include them in the summary.
-Step 5: Review each summary to ensure that: No ellipses ("...") are used. 
-Step 6: make sure all the characters in the content column (the strings in the content column) contain only characters that can be sent through an API call. 
-Step 7: Make sure you did everything right, and check for mistakes. 
-Step 8: if any values are missing use null. YOU must not use NaN or any other values that wouldn't be allowed in an API call. If there values missing just use null.
-Step 9: highlight anything you think wasn't done clearly
-Step 10: Take a deep breath and review the solution
-Step 11: Make any corrections necessary without deviating from the instructions
-Step 12: Ensure that all NaN or missing values are replaced with null in the output JSON. Do not use any other placeholder such as NaN, undefined, or empty strings.
+Step 4: For each item, generate a concise and engaging summary that highlights the key outcomes, tools, or techniques in a way that encourages users to learn more. Do not include the course title or repeat phrases like 'This course'. Instead, focus on making the summary feel inviting and impactful by describing the benefits or key takeaways.Ensure the summary is not truncated. It should be a complete sentence. Instead of defaulting to the first sentence, analyze the entire content and pick the most relevant parts to craft the summary. Focus on the main value of the course, tools or concepts it teaches, and the audience's possible needs.
+Step 5: make sure all the characters in the content column (the strings in the content column) contain only characters that can be sent through an API call. 
+Step 6: Make sure you did everything right, and check for mistakes. 
+Step 7: if any values are missing use null. YOU must not use NaN or any other values that wouldn't be allowed in an API call. If there values missing just use null.
+Step 8: highlight anything you think wasn't done clearly
+Step 9: Take a deep breath and review the solution
+Step 10: Make any corrections necessary without deviating from the instructions
+Step 11: Ensure that all NaN or missing values are replaced with null in the output JSON. Do not use any other placeholder such as NaN, undefined, or empty strings. This step is absolutely MANDATORY.
+Step 12: Review the previous step to make sure all NaN or missing values where replaced with null. 
+Step 13: Review step 4 (summary creation step). Make sure the "Summary and the "Content" are different. The summary must respect all the restrictions found in step 4 (not truncated, does not contain the title of the course, and engaging).
 Step 13: Output the CSV file with the items filled.
 Step 14: Do not ask if I want the full output, just give me the output file.
 
