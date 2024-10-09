@@ -9,6 +9,7 @@ Your task is to output a JSON file with the following format:
             "Permalink",
 	        "Content",
             "Summary",
+            "Inspire",
             "Tags String",
             "Course Tags String",
             "Content Type String",
@@ -20,6 +21,7 @@ Your task is to output a JSON file with the following format:
             "Permalink",
             "Content",
             "Summary",
+            "Inspire",
             "Image Featured",
             "Tags",
             "Course Tags",
@@ -65,6 +67,7 @@ This item doesn't contain the Tags String, Course Tags String, Content Type Stri
                 "Image Featured": "https://www.jcoinctc.org/wp-content/uploads/NIATx-Thumbnail-2.jpg",
 		        "Content": "The course "Implementing the NIATx Model of Process Improvement" teaches agencies how to use NIATx to improve addiction treatment services and operations. It covers process improvement strategies to increase access and retention in treatment programs, with a focus on implementing these strategies in justice settings. The course includes tools and resources such as change project guides, flowcharting exercises, and sustainability plans. It is designed for agencies working in criminal justice or community-based settings.",
                 "Summary": "Learn how to boost addiction treatment services with the NIATx process improvement model! 🚀 This course equips agencies with tools like flowcharting and sustainability plans to enhance access and retention in justice settings. 🎯",
+                "Inspire": "Yes"
                 "Tags": [
                     "Criminal legal system practitioners",
                     "OUD",
