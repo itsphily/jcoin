@@ -623,7 +623,7 @@ export const FeedbackExtension = {
         }
 
         /* Rotate the thumb down icon by 180 degrees */
-        .vfrc-feedback--button[data-feedback="0"] svg {
+        .vfrc-feedback--button[data-feedback="I want to leave negative feedback"] svg {
           transform: rotate(180deg);
         }
 
@@ -640,8 +640,8 @@ export const FeedbackExtension = {
       <div class="vfrc-feedback">
         <div class="vfrc-feedback--description">Was this helpful?</div>
         <div class="vfrc-feedback--buttons">
-          <button class="vfrc-feedback--button" data-feedback="1" aria-label="Thumbs Up">${SVG_Thumb}</button>
-          <button class="vfrc-feedback--button" data-feedback="2" aria-label="Thumbs Down">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="I want to leave positive feedback" aria-label="Thumbs Up">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="I want to leave negative feedback" aria-label="Thumbs Down">${SVG_Thumb}</button>
         </div>
       </div>
     `;
