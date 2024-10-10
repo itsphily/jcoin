@@ -565,40 +565,38 @@ export const FeedbackExtension = {
         .vfrc-feedback-container {
           background-color: #ffffff; /* White background */
           max-width: 300px;
-          margin: 0 auto; /* Center the container, remove vertical margins */
+          margin: 0 auto; /* Center the container */
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 0; /* Remove padding to eliminate gaps */
+          padding: 0;
         }
 
-        /* Arrange text and buttons on the same line */
         .vfrc-feedback {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 5px; /* Adjust space between text and buttons if needed */
+          gap: 5px;
         }
 
-        /* Adjusted font size to be smaller */
         .vfrc-feedback--description {
-          font-size: 0.8em; /* Reduced font size */
+          font-size: 0.8em;
           color: #333;
           text-align: center;
-          margin: 0; /* Remove margins to eliminate gaps */
+          margin: 0;
         }
 
         .vfrc-feedback--buttons {
           display: flex;
           justify-content: center;
-          gap: 5px; /* Adjust space between buttons */
+          gap: 5px;
         }
 
         .vfrc-feedback--button {
           background: none;
           border: none;
           cursor: pointer;
-          padding: 2px; /* Reduced padding for smaller icons */
+          padding: 2px;
           opacity: 0.6;
           transition: opacity 0.3s;
         }
@@ -607,19 +605,10 @@ export const FeedbackExtension = {
           opacity: 1;
         }
 
-        .vfrc-feedback--button.selected {
-          opacity: 1;
-        }
-
-        .vfrc-feedback--button.disabled {
-          cursor: not-allowed;
-          opacity: 0.3;
-        }
-
         .vfrc-feedback--button svg {
-          width: 16px; /* Smaller size */
+          width: 16px;
           height: 16px;
-          color: #2e6ee1; /* Icon color */
+          color: #2e6ee1;
         }
 
         /* Rotate the thumb down icon by 180 degrees */
@@ -627,13 +616,22 @@ export const FeedbackExtension = {
           transform: rotate(180deg);
         }
 
+        /* Thank-You Message Style */
+        .vfrc-feedback--thank-you {
+          font-size: 0.9em;
+          color: #333;
+          text-align: center;
+          margin: 0;
+          padding: 10px 0;
+        }
+
         /* Override existing message styles to remove gaps */
         .vfrc-message--extension-Feedback {
           background: none !important;
           border: none !important;
           box-shadow: none !important;
-          margin: 0 !important; /* Remove margins to eliminate gaps */
-          padding: 0 !important; /* Remove padding */
+          margin: 0 !important;
+          padding: 0 !important;
           max-width: none !important;
         }
       </style>
@@ -641,7 +639,7 @@ export const FeedbackExtension = {
         <div class="vfrc-feedback--description">Was this helpful?</div>
         <div class="vfrc-feedback--buttons">
           <button class="vfrc-feedback--button" data-feedback="I want to leave positive feedback" aria-label="Thumbs Up">${SVG_Thumb}</button>
-          <button class="vfrc-feedback--button" data-feedback="I want to leave negative feedback" aria-label="Thumbs Down">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button thumbs-down" data-feedback="I want to leave negative feedback" aria-label="Thumbs Down">${SVG_Thumb}</button>
         </div>
       </div>
     `;
@@ -667,7 +665,6 @@ export const FeedbackExtension = {
           });
         });
       });
-
 
     // Append the feedback container
     element.appendChild(feedbackContainer);
