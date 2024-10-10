@@ -641,7 +641,7 @@ export const FeedbackExtension = {
         <div class="vfrc-feedback--description">Was this helpful?</div>
         <div class="vfrc-feedback--buttons">
           <button class="vfrc-feedback--button" data-feedback="1" aria-label="Thumbs Up">${SVG_Thumb}</button>
-          <button class="vfrc-feedback--button" data-feedback="0" aria-label="Thumbs Down">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="2" aria-label="Thumbs Down">${SVG_Thumb}</button>
         </div>
       </div>
     `;
