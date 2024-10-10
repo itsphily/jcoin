@@ -646,8 +646,8 @@ export const FeedbackExtension = {
       </div>
     `;
 
-      // Add event listeners to feedback buttons
-      feedbackContainer
+    // Add event listeners to feedback buttons
+    feedbackContainer
       .querySelectorAll('.vfrc-feedback--button')
       .forEach((button) => {
         button.addEventListener('click', function () {
@@ -657,8 +657,14 @@ export const FeedbackExtension = {
             payload: { feedback: feedback },
           });
 
-          // Remove the feedback message from the chat widget
-          feedbackContainer.remove();
+          // Update all feedback messages to say "Thank you for your feedback!"
+          document.querySelectorAll('.vfrc-feedback-container').forEach((container) => {
+            container.innerHTML = `
+              <div class="vfrc-feedback">
+                <div class="vfrc-feedback--thank-you">Thank you for your feedback!</div>
+              </div>
+            `;
+          });
         });
       });
 
