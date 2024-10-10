@@ -42,7 +42,6 @@ This procedure explains how you can update the data in voiceflow
 # Update the data in OpenAI Playground
 
 
-
 # Setting up the Google Cloud
 
 In the Google Cloud folder, open the Deployment Google Cloud Procedure file and follow the steps exactly.
