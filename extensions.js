@@ -616,13 +616,11 @@ export const FeedbackExtension = {
           transform: rotate(180deg);
         }
 
-        /* Thank-You Message Style */
-        .vfrc-feedback--thank-you {
-          font-size: 0.9em;
-          color: #333;
-          text-align: center;
-          margin: 0;
-          padding: 10px 0;
+        /* Adjust the feedback container when it's empty */
+        .vfrc-feedback-container:empty {
+          padding: 0 !important;
+          margin: 0 !important;
+          height: 0 !important;
         }
 
         /* Override existing message styles to remove gaps */
@@ -655,13 +653,9 @@ export const FeedbackExtension = {
             payload: { feedback: feedback },
           });
 
-          // Update all feedback messages to say "Thank you for your feedback!"
+          // Clear the content of all feedback containers
           document.querySelectorAll('.vfrc-feedback-container').forEach((container) => {
-            container.innerHTML = `
-              <div class="vfrc-feedback">
-                <div class="vfrc-feedback--thank-you">Thank you for your feedback!</div>
-              </div>
-            `;
+            container.innerHTML = '&nbsp;';
           });
         });
       });
