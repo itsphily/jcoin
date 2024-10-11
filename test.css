@@ -327,3 +327,32 @@ footer button.vfrc-button--primary[label=Cancel]::after {
   color: #ffffff;
   font-weight: 600;
 }
+
+/* Position the chat input area relative to contain the reset icon */
+.vfrc-chat-input {
+  position: relative; /* Ensures the reset icon is positioned relative to this container */
+}
+
+/* Style the reset icon */
+.vfrc-chat-input .reset-icon {
+  position: absolute;
+  right: 10px; /* Adjust this value to align the icon horizontally */
+  top: 50%;
+  transform: translateY(-50%); /* Centers the icon vertically */
+  width: 24px; /* Adjust the size as needed */
+  height: 24px;
+  cursor: pointer;
+  fill: currentColor;
+  color: #00705D; /* Set the color of the icon */
+}
+
+/* Optional: Change icon color on hover */
+.vfrc-chat-input .reset-icon:hover {
+  color: #00564A; /* Darker green on hover */
+}
+
+/* Optional: Adjust the SVG inside the reset icon */
+.vfrc-chat-input .reset-icon svg {
+  width: 100%;
+  height: 100%;
+}
