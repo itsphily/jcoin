@@ -565,38 +565,40 @@ export const FeedbackExtension = {
         .vfrc-feedback-container {
           background-color: #ffffff; /* White background */
           max-width: 300px;
-          margin: 0 auto; /* Center the container */
+          margin: 0 auto; /* Center the container, remove vertical margins */
           display: flex;
           flex-direction: column;
           align-items: center;
-          padding: 0;
+          padding: 0; /* Remove padding to eliminate gaps */
         }
 
+        /* Arrange text and buttons on the same line */
         .vfrc-feedback {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 5px;
+          gap: 5px; /* Adjust space between text and buttons if needed */
         }
 
+        /* Adjusted font size to be smaller */
         .vfrc-feedback--description {
-          font-size: 0.8em;
+          font-size: 0.8em; /* Reduced font size */
           color: #333;
           text-align: center;
-          margin: 0;
+          margin: 0; /* Remove margins to eliminate gaps */
         }
 
         .vfrc-feedback--buttons {
           display: flex;
           justify-content: center;
-          gap: 5px;
+          gap: 5px; /* Adjust space between buttons */
         }
 
         .vfrc-feedback--button {
           background: none;
           border: none;
           cursor: pointer;
-          padding: 2px;
+          padding: 2px; /* Reduced padding for smaller icons */
           opacity: 0.6;
           transition: opacity 0.3s;
         }
@@ -605,10 +607,19 @@ export const FeedbackExtension = {
           opacity: 1;
         }
 
+        .vfrc-feedback--button.selected {
+          opacity: 1;
+        }
+
+        .vfrc-feedback--button.disabled {
+          cursor: not-allowed;
+          opacity: 0.3;
+        }
+
         .vfrc-feedback--button svg {
-          width: 16px;
+          width: 16px; /* Smaller size */
           height: 16px;
-          color: #2e6ee1;
+          color: #2e6ee1; /* Icon color */
         }
 
         /* Rotate the thumb down icon by 180 degrees */
@@ -616,28 +627,26 @@ export const FeedbackExtension = {
           transform: rotate(180deg);
         }
 
-        /* Adjust the feedback container when it's empty */
-        .vfrc-feedback-container:empty {
-          padding: 0 !important;
-          margin: 0 !important;
-          height: 0 !important;
-        }
-
         /* Override existing message styles to remove gaps */
         .vfrc-message--extension-Feedback {
           background: none !important;
           border: none !important;
           box-shadow: none !important;
-          margin: 0 !important;
-          padding: 0 !important;
+          margin: 0 !important; /* Remove margins to eliminate gaps */
+          padding: 0 !important; /* Remove padding */
           max-width: none !important;
+        }
+
+        /* Hide the feedback container when it's hidden */
+        .vfrc-feedback-container.hidden {
+          display: none;
         }
       </style>
       <div class="vfrc-feedback">
         <div class="vfrc-feedback--description">Was this helpful?</div>
         <div class="vfrc-feedback--buttons">
           <button class="vfrc-feedback--button" data-feedback="I want to leave positive feedback" aria-label="Thumbs Up">${SVG_Thumb}</button>
-          <button class="vfrc-feedback--button thumbs-down" data-feedback="I want to leave negative feedback" aria-label="Thumbs Down">${SVG_Thumb}</button>
+          <button class="vfrc-feedback--button" data-feedback="I want to leave negative feedback" aria-label="Thumbs Down">${SVG_Thumb}</button>
         </div>
       </div>
     `;
@@ -653,10 +662,8 @@ export const FeedbackExtension = {
             payload: { feedback: feedback },
           });
 
-          // Clear the content of all feedback containers
-          document.querySelectorAll('.vfrc-feedback-container').forEach((container) => {
-            container.innerHTML = '&nbsp;';
-          });
+          // Hide the feedback message from the chat widget
+          feedbackContainer.classList.add('hidden');
         });
       });
 
@@ -664,3 +671,4 @@ export const FeedbackExtension = {
     element.appendChild(feedbackContainer);
   },
 };
+

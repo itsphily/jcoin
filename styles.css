@@ -289,11 +289,3 @@ footer button.vfrc-button--primary[label=Cancel]::after {
 .vfrc-message--extension {
   margin: 0 !important;
 }
-
-.vfrc-feedback--thank-you {
-  font-size: 0.9em;
-  color: #333;
-  text-align: center;
-  margin: 0;
-  padding: 10px 0;
-}
