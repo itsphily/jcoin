@@ -77,7 +77,7 @@
 .c-kIbiaN-iiTsXc-size-small.c-kIbiaN-icyFRzP-css {
   display: none;
 }
-
+/* doubled size and height */
 /* Launcher Button Styling */
 .c-kIbiaN-eyfkxi-size-large {
   background-image: url("https://storage.googleapis.com/msgsndr/bFvL1gvuf7WH6d7nYEsU/media/671e3f5f4e34aa4a9d8c50fa.png");
@@ -87,8 +87,8 @@
   background-color: transparent;
   border: none !important;
   border-radius: 0 !important;
-  width: 240px !important;
-  height: 120px !important;
+  width: 480px !important;
+  height: 240px !important;
   box-shadow: none !important;
 }
 
