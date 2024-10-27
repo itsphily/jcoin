@@ -10,6 +10,8 @@ Your task is to output a JSON file with the following format:
 	        "Content",
             "Summary",
             "Inspire",
+            "Top 3",
+            "Date",
             "Tags String",
             "Course Tags String",
             "Content Type String",
@@ -22,6 +24,8 @@ Your task is to output a JSON file with the following format:
             "Content",
             "Summary",
             "Inspire",
+            "Top 3",
+            "Date",
             "Image Featured",
             "Tags",
             "Course Tags",
@@ -47,18 +51,19 @@ Step 1: In the CSV file some of these categories have elements that are separate
 Step 2: Replace all the abbreviations and remove duplicates. For example: Opioid Use Disorder (OUD), you would first replace OUD by Opioid Use Disorder, since it is a duplication you would remove one of them (including the extra parenthesis)
 Here is a list of replacements, do not replace any other abbreviations: "OUD": "Opioid Use Disorder", "MOUD": "Medication Opioid Use Disorder", "SUD": "Substance Use Disorder", "MAT": "Medication for addiction treatment", "MAR": "missing at random", "MCAR": "missing completely at random", "MNAR": "missing not at random", "ASAM": "American Society of Addiction Medicine", "CFR": "Code of Federal Regulations", "ACE": "Adverse Childhood Experiences", "HIPAA": "Health Insurance Portability and Accountability Act", "RNR": "Risk-Need-Responsivity", "LEAP": "learning experiences to advance practice", "APF": "Addiction Policy Forum", "CBT": "Cognitive Behavioral Therapy", "NIH": "National Institutes of Health", "UMASS": "University of Massachusetts", "TASC": "Treatment Alternatives for Safer Communities"
 Step 3: The following categories should be arrays: Tags, Course Tags, Content Type, Subject, Audience. You should create additional categories which will be included in the item. The additional categories will be a single string that will include all the elements from each the arrays.
-Step 4: For each item, generate a concise and engaging summary that highlights the key outcomes, tools, or techniques in a way that encourages users to learn more. Do not include the course title or repeat phrases like 'This course'. Instead, focus on making the summary feel inviting and impactful by describing the benefits or key takeaways.Ensure the summary is not truncated. It should be a complete sentence. Instead of defaulting to the first sentence, analyze the entire content and pick the most relevant parts to craft the summary. Focus on the main value of the course, tools or concepts it teaches, and the audience's possible needs.
-Step 5: make sure all the characters in the content column (the strings in the content column) contain only characters that can be sent through an API call. 
-Step 6: Make sure you did everything right, and check for mistakes. 
-Step 7: if any values are missing use null. YOU must not use NaN or any other values that wouldn't be allowed in an API call. If there values missing just use null.
-Step 8: highlight anything you think wasn't done clearly
-Step 9: Take a deep breath and review the solution
-Step 10: Make any corrections necessary without deviating from the instructions
-Step 11: Ensure that all NaN or missing values are replaced with null in the output JSON. Do not use any other placeholder such as NaN, undefined, or empty strings. This step is absolutely MANDATORY.
-Step 12: Review the previous step to make sure all NaN or missing values where replaced with null. 
-Step 13: Review step 4 (summary creation step). Make sure the "Summary and the "Content" are different. The summary must respect all the restrictions found in step 4 (not truncated, does not contain the title of the course, and engaging).
-Step 13: Output the CSV file with the items filled.
-Step 14: Do not ask if I want the full output, just give me the output file.
+Step 4: Make sure all the dates are formatted in the Date column are formatted in the format DD/MM/YYYY.
+Step 5: For each item, generate a concise, unique, and engaging summary using the ‘Content’ field. The summary should highlight key benefits, outcomes, tools, or techniques to encourage users to learn more. Do not include the course title or use phrases like “This course”. Focus on creating an inviting and impactful summary by emphasizing the main value offered, the concepts taught, and the potential needs of the audience. Ensure the summary is a complete, non-truncated sentence. Instead of defaulting to the first sentence, analyze the entire ‘Content’ field to select the most relevant information. If the ‘Content’ field is missing, invalid, or contains ‘NaN’, treat it as None and only generate a summary when it is a valid string.
+Step 6: make sure all the characters in the content column (the strings in the content column) contain only characters that can be sent through an API call. 
+Step 7: Make sure you did everything right, and check for mistakes. 
+Step 8: if any values are missing use null. YOU must not use NaN or any other values that wouldn't be allowed in an API call. If there values missing just use null.
+Step 9: highlight anything you think wasn't done clearly
+Step 10: Take a deep breath and review the solution
+Step 11: Make any corrections necessary without deviating from the instructions
+Step 12: Ensure that all NaN or missing values are replaced with null in the output JSON. Do not use any other placeholder such as NaN, undefined, or empty strings. This step is absolutely MANDATORY.
+Step 13: Review the previous step to make sure all NaN or missing values where replaced with null. 
+Step 14: Review step 4 (summary creation step). Make sure the "Summary and the "Content" are different. The summary must respect all the restrictions found in step 4 (not truncated, does not contain the title of the course, and engaging).
+Step 15: Output the CSV file with the items filled.
+Step 16: Do not ask if I want the full output, just give me the output file.
 
 # Item example
 This item doesn't contain the Tags String, Course Tags String, Content Type String, Subject String, Audience String that you should add.
@@ -67,7 +72,9 @@ This item doesn't contain the Tags String, Course Tags String, Content Type Stri
                 "Image Featured": "https://www.jcoinctc.org/wp-content/uploads/NIATx-Thumbnail-2.jpg",
 		        "Content": "The course "Implementing the NIATx Model of Process Improvement" teaches agencies how to use NIATx to improve addiction treatment services and operations. It covers process improvement strategies to increase access and retention in treatment programs, with a focus on implementing these strategies in justice settings. The course includes tools and resources such as change project guides, flowcharting exercises, and sustainability plans. It is designed for agencies working in criminal justice or community-based settings.",
                 "Summary": "Learn how to boost addiction treatment services with the NIATx process improvement model! 🚀 This course equips agencies with tools like flowcharting and sustainability plans to enhance access and retention in justice settings. 🎯",
-                "Inspire": "Yes"
+                "Inspire": "Yes",
+                "Top 3": "Yes",
+                "Date": "01/10/2024",
                 "Tags": [
                     "Criminal legal system practitioners",
                     "OUD",

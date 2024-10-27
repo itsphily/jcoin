@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> <!-- Added charset for proper encoding -->
+  <title>Chat Widget</title>
+  <style>
+    body { background-color: #f9f9f9; }
+    #flat-chat { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; pointer-events: none;}
+    #confetti-canvas { position: fixed; z-index: 0; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <canvas id="confetti-canvas"></canvas>
+  <div id="flat-chat"></div>
+  <div id="voiceflow-chat-frame"></div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script type="module">
+      import {
+        DisableInputExtension,
+        VideoExtension,
+        TimerExtension,
+        MapExtension,
+        FileUploadExtension,
+        KBUploadExtension,
+        DateExtension,
+        ConfettiExtension,
+        FeedbackExtension,
+        FeedbackFormExtension,
+      } from 'https://itsphily.github.io/jcoin/extensions.js';
+
+      // Load the Voiceflow chat widget script
+      (function (d, t) {
+        var v = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+        v.onload = function () {
+          window.voiceflow.chat.load({
+            verify: { projectID: '66ad1289f34d75b35b5e74fb' },
+            url: 'https://general-runtime.voiceflow.com',
+            versionID: 'production',
+            render: {
+              mode: 'overlay',
+            },
+            autostart: false,
+            allowDangerousHTML: true,
+            assistant: {
+              //test.css  replace with this when going into development
+              stylesheet: "https://itsphily.github.io/jcoin/styles.css",
+              extensions: [
+                DisableInputExtension,
+                VideoExtension,
+                TimerExtension,
+                MapExtension,
+                FileUploadExtension,
+                KBUploadExtension,
+                DateExtension,
+                ConfettiExtension,
+                FeedbackExtension,
+                FeedbackFormExtension,
+              ],
+            },
+          }).then(() => {
+            // Proactive messaging logic
+            window.voiceflow.chat.proactive.clear(); // clear all previous messages
+            window.voiceflow.chat.proactive.push(
+            { 
+              type: 'text', 
+              payload: { message: 'Hi there 👋'}
+            }, 
+            { 
+              type: 'text', 
+              payload: { message: 'I am here to help' }
+            }, 
+          );
+          });
+        };
+        v.src = 'https://cdn.voiceflow.com/widget/bundle.mjs';
+        v.type = 'text/javascript';
+        s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+  </script>
+</body>
+</html>
